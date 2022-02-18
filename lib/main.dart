@@ -2,13 +2,38 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+class Ques extends StatefulWidget {
+  //const ({Key? key}) : super(key: key);
+  Ques();
+  @override
+  _State createState() => _State();
+}
+
+class _State extends State<> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+
+
 void main() => runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
   home: Home()
 ));
 
 class  Home extends StatelessWidget {
-
+  _launch_url(url) async
+  {
+    if (await canLaunch(url))
+    {
+      await launch(url);
+    }
+    else{
+      throw "Cannot launch the URL $url";
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -193,7 +218,7 @@ class  Home extends StatelessWidget {
             Container(
               margin: const EdgeInsets.fromLTRB(25,10,10,0),
               child: const Text(
-                "I am a 2nd year CSE(AIML) student\n"
+                "I am a 2nd year CSE(AI&ML) student\n"
                 "I am basically from Mathura.\n"
                 "My hobbies include basketball, badminton, speed typing etc.\n"
                 "Also I am very big foodie.\n",
@@ -382,7 +407,7 @@ class  Home extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(20,0,20,0),
                   child: IconButton(
                     onPressed: () {
-                      _launchURL('hackerrank');
+                      _launch_url('https://www.hackerrank.com/agrawalbhavya624');
                     },
                     icon: Image.asset('images/hackerrank.png'),
                     iconSize: 40,
@@ -392,7 +417,7 @@ class  Home extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(20,0,20,0),
                   child: IconButton(
                     onPressed: () {
-                      _launchURL('instagram');
+                      _launch_url('https://www.instagram.com/invites/contact/?i=f2qqgtlfh69w&utm_content=3e0orga');
                     },
                     icon: Image.asset('images/instagram.png'),
                     iconSize: 40,
@@ -402,7 +427,7 @@ class  Home extends StatelessWidget {
                   padding: const EdgeInsets.fromLTRB(20,0,20,0),
                   child: IconButton(
                     onPressed: () {
-                      _launchURL('linkedin');
+                      _launch_url('https://www.linkedin.com/in/bhavya-agrawal-2463001aa/');
                     },
                     icon: Image.asset('images/linkdeln.png'),
                     iconSize: 40,
@@ -433,31 +458,3 @@ class  Home extends StatelessWidget {
     );
   }
 }
-_launchURL(String value) async {
-    const url = 'https://www.hackerrank.com/agrawalbhavya624';
-    const url2 = 'https://www.linkedin.com/in/bhavya-agrawal-2463001aa/';
-    const url3 = 'https://www.instagram.com/invites/contact/?i=f2qqgtlfh69w&utm_content=3e0orga';
-    if (value == 'hackerrank') {
-      if (await canLaunch(url)) {
-        await launch(url);
-      } else {
-        throw 'Could not launch $url';
-      }
-    } else if (value == 'linkedin') {
-      if (await canLaunch(url2)) {
-        await launch(url2);
-      } else {
-        throw 'Could not launch $url2';
-      }
-    }
-    else if (value == 'instagram'){
-      if (await canLaunch(url3)) {
-        await launch(url3);
-      } else {
-        throw 'Could not launch $url3';
-      }
-    }
-    else{
-      throw 'url not found';
-    }
-  }
